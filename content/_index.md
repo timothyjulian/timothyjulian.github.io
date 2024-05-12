@@ -1,6 +1,6 @@
 ---
-title: "Welcome to Congo! :tada:"
-description: "This is a demo of the Congo theme for Hugo."
+title: "Welcome to Timothy Blog! :tada:"
+description: "This blog is used to express any ideas related to my expertise"
 ---
 
 {{< lead >}}
