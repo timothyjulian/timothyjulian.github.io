@@ -1,6 +1,6 @@
 ---
-title: "Welcome to Timothy Blog! :tada:"
-description: "This blog is used to express any ideas related to my expertise"
+title: "Timothy Julian’s Blog"
+description: "Personal Blog of Timothy Julian. Here you can find my experiments, research or anything related to my findings."
 ---
 
 {{< lead >}}
