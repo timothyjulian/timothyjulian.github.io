@@ -37,6 +37,7 @@ fingerprintAlgorithm = "sha256"
   recentLimit = 5
 
 [article]
+  showSummary = true
   showDate = true
   showDateUpdated = false
   showAuthor = true
@@ -50,14 +51,13 @@ fingerprintAlgorithm = "sha256"
   invertPagination = false
   showReadingTime = true
   showTableOfContents = true
-  showTaxonomies = false
+  showTaxonomies = true
   showComments = false
-  showSummary = true
   # sharingLinks = ["facebook", "x-twitter", "mastodon", "pinterest", "reddit", "linkedin", "email", "threads", "telegram", "line", "weibo"]
 
 [list]
   showBreadcrumbs = false
-  showSummary = false
+  showSummary = true
   showTableOfContents = false
   showTaxonomies = false
   groupByYear = true

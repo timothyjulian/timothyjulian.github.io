@@ -5,7 +5,7 @@ date: 2024-05-11
 description: "Hello world post"
 summary: "Hi my name is Timothy, nice to see you around!"
 slug: "introduction"
-showSummary: true
+tags: ["misc", "personal"]
 ---
 ## Introduction
 
