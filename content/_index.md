@@ -1,6 +1,6 @@
 ---
-title: "Timothy Julian’s Blog"
-description: "Personal Blog of Timothy Julian. Here you can find my experiments, research or anything related to my findings."
+title: "Discover Timothy Julian's Experiments, Research, and Findings"
+description: "Explore my experiments, research, and latest findings on this site. Discover in-depth analyses, innovative experiments, and detailed research results that drive scientific understanding forward."
 ---
 
 {{< lead >}}
