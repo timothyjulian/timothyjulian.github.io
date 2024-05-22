@@ -2,7 +2,7 @@
 title: "Terminal Configuration :rocket:"
 draft: true
 date: 2024-05-13
-description: "Terimal Configuration Post"
+description: "Terimal configuration post"
 summary: "This article will guide you on how to set your terminal like mine"
 slug: "terminal-configuration"
 tags: ["CLI", "personal"]
