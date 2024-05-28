@@ -47,7 +47,7 @@ In this experiment, I would like to see how scripting languages can be used to t
 
 ## Testing Methodology
 
-I will use `Spring Boot` as the host to run the scripting languages. Three endpoints are made to point which scripting languages will be used for the specific request. I will do 10 first request and plot the timecost of each request for each languages then do another 100 request then plot the timecost as well.
+I will use `Spring Boot` as the host to run the scripting languages. Three endpoints are made to point which scripting languages will be used for the specific request. I will do 10 first request and plot the timecost of each request for each languages then do another 50 request then plot the timecost as well.
 
 **RunnerController.java**
 ```java
@@ -466,7 +466,7 @@ options: {
 }
 {{< /chart >}}
 
-But if we look into the timecost of the next 100 requests, we can see that `Javascript` is the fastest with timecost around `10ms` followed by `Groovy` with timecost around `20ms`. While `Python` remain the slowest with more than `100ms`.
+But if we look into the timecost of the next 50 requests, we can see that `Javascript` is the fastest with timecost around `10ms` followed by `Groovy` with timecost around `20ms`. While `Python` remain the slowest with more than `100ms`.
 
 {{< chart >}}
 type: 'line',
