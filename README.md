@@ -1,3 +1,3 @@
-# Personal website
+# Valentine's Special
 
-Made with  [Hugo](https://gohugo.io) and  [Congo](https://jpanther.github.io).
+Hi, this page is currently being used as personal valentine special.
