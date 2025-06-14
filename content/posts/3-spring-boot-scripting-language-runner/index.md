@@ -6,14 +6,22 @@ summary: "Run Javascript, Groovy, and Python from Spring Boot"
 slug: "spring-boot-scripting-language-runner"
 tags: ["java", "scripting", "CaC"]
 ---
-## Code as Config
 
-The development of modern software oftens require somekind of a config that can be changed on the fly to adjust the software behaviour. This leads to a practice called "Config as Code" (CaC). 
+# 🛫 Spring Boot Scripting Language Runner
 
-`CaC` manages config/ settings as code. This approach involves storing configuration files in version control systems (like `Git`), enabling teams to manage, track, and audit changes to configuration settings in the same way they handle source code.
+Welcome, fellow code explorer! 🚀 In this post, I’m diving into a fun experiment: running scripting languages (JavaScript, Groovy, and Python) directly from Spring Boot. Why? Because sometimes config files just aren’t enough—you want real code as config!
 
+---
 
-**Example: Springboot application.yml**
+## 🧩 Code as Config
+
+Modern software often needs configs that can be changed on the fly to tweak behavior. Enter "Config as Code" (CaC):
+
+- Store config in version control (like Git)
+- Track and audit changes just like source code
+- Make your app more dynamic and flexible
+
+**Example: Spring Boot `application.yml`**
 ```yaml
 server:
   port: 8080
@@ -36,18 +44,22 @@ myapp:
 
 ```
 
-But what if you needed a config that acts more like a code with the criteria of:
-- Reusable
-- Able to be changed **on the fly** to change software behaviour
-- Able to do arithmetic, string manipulation, selection, and repetition
+But what if you need your config to *act* like code? Maybe you want:
+- Reusability
+- On-the-fly changes
+- Arithmetic, string manipulation, selection, repetition
 
-## Scripting Language as Config
+---
 
-In this experiment, I would like to see how scripting languages can be used to tackle the problem. I choose 3 scripting languages, `Javascript`, `Groovy`, and `Python` These languages are chosen arbitrarily and without any specific reason.
+## 🧙 Scripting Language as Config
 
-## Testing Methodology
+For this experiment, I picked three scripting languages: `JavaScript`, `Groovy`, and `Python`. No deep reason—just wanted to see how each stacks up!
 
-I will use `Spring Boot` as the host to run the scripting languages. Three endpoints are made to point which scripting languages will be used for the specific request. I will do 10 first request and plot the timecost of each request for each languages then do another 50 request then plot the timecost as well.
+---
+
+## 🧪 Testing Methodology
+
+I used Spring Boot as the host, with three endpoints for each language. Each runner does simple tasks: selection, string manipulation, repetition, and JSON work. Here’s a peek at the controller:
 
 **RunnerController.java**
 ```java
@@ -95,9 +107,9 @@ public class RunnerController {
 
 Each of the runner will perform simple task which consists of selection, string manipulation, repetition, and JSON manipulation
 
-### Specification
+### 🖥️ My Test Rig
 
-As I will measure the timecost through experimental analysis, it is also needed to consider the component that I use to run the test. For this experiment I'm using my own laptop to host the Spring Boot with following specification:
+For the curious, here’s my setup:
 
 | Component | Specification |
 |---|---|
@@ -108,10 +120,11 @@ As I will measure the timecost through experimental analysis, it is also needed 
 |`Spring Boot`|v3.2.5|
 |`Java`|21.0.1|
 
+---
 
 ### Javascript
 
-In order to run `Javascript` from `Spring Boot`, I use `GraalVM` with the following dependencies
+To run JavaScript from Spring Boot, I used GraalVM and the following dependencies:
 
 **pom.xml**
 ```xml
@@ -217,7 +230,7 @@ main(message);
 
 ### Groovy
 
-In order to run `Groovy` I use the following dependencies:
+For Groovy, here’s the dependency:
 
 **pom.xml**
 ```xml
@@ -311,7 +324,7 @@ return main(message)
 
 ### Python
 
-For `Python`, I use the same `GraalVM` dependencies with additional `python-community` dependency
+For Python, I used GraalVM’s `python-community` dependency:
 
 **pom.xml**
 ```xml
@@ -395,9 +408,15 @@ main(message)
 
 
 
-## Testing Result
+---
 
-After doing the test, we can see the performance of each of the languages. For the first request, `Python` is the slowest amongst the other 2 with timecost of `7156ms` while `Groovy` is the fastest with only `722ms`. For the remainin 9 requests, the timecost of `Javascript` and `Groovy` seems comparable with around `30` - `40ms`.
+## 📊 Testing Result
+
+After running the tests, here’s what I found:
+
+- 🐍 **Python** was the slowest on the first request (`7156ms`), but improved over time.
+- 🚀 **Groovy** was the fastest on the first run (`722ms`) and stayed quick.
+- ⚡ **JavaScript** and **Groovy** were neck-and-neck for repeated requests (`30-40ms`).
 
 {{< chart >}}
 type: 'line',
@@ -466,7 +485,11 @@ options: {
 }
 {{< /chart >}}
 
-But if we look into the timecost of the next 50 requests, we can see that `Javascript` is the fastest with timecost around `10ms` followed by `Groovy` with timecost around `20ms`. While `Python` remain the slowest with more than `100ms`.
+For the next 50 requests:
+
+- ⚡ **JavaScript** was the fastest (`~10ms`)
+- 🚀 **Groovy** followed (`~20ms`)
+- 🐍 **Python** stayed above `100ms`
 
 {{< chart >}}
 type: 'line',
@@ -546,17 +569,19 @@ options: {
 }
 {{< /chart >}}
 
-## Conclusions
+---
 
-Some conclusions can be made from this experiment.
+## 🏁 Conclusions
 
-1. Performance Comparison:
-    - `JavaScript`: This language showed the best performance for repeated requests, with an initial high time cost but quickly stabilizing to around `10`-`15ms` per request.
-    - `Groovy`: `Groovy` performed comparably to `JavaScript` for repeated requests, with stable time costs around `20ms`, making it a reliable choice.
-    - `Python`: `Python` had the highest initial time cost and remained the slowest across multiple requests, though it showed some improvement over time.
+Here’s what I learned:
 
-2. Use Case: Choosing a scripting language for configuration depends on the specific needs of the application. `JavaScript` and `Groovy` provide quick response times suitable for high-frequency configuration changes.
+1. **Performance:**
+    - `JavaScript` is the speed king for repeated requests.
+    - `Groovy` is a solid, reliable choice.
+    - `Python` lags behind, but still works if you need it.
+2. **Use Case:**
+    - Pick your scripting language based on your app’s needs. If you want speed and flexibility, JavaScript or Groovy are great picks.
 
-This experiment illustrates how using scripting languages for configurations can offer flexibility and dynamism in adjusting software behavior, though performance considerations are crucial in selecting the appropriate language.
+Using scripting languages for config can make your app super flexible, but always keep performance in mind.
 
-Full code can be found here: [spring-boot-script-runner](https://github.com/timothyjulian/spring-boot-script-runner)
+Full code is here: [spring-boot-script-runner](https://github.com/timothyjulian/spring-boot-script-runner) 🛠️
