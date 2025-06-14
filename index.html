@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy 8th Anniversary</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="falling-hearts"></div>
+
+  <div class="card">
+    <h1>💖 Happy 8th Anniversary 💖</h1>
+    <img src="photo.png" alt="Us together" class="photo" style="height: 40em;"/>
+
+    <p>To the love of my life,</p>
+    <p>
+      8 years of laughter, growth, memories, and unconditional love.  
+      I wouldn’t trade a single moment. Thank you for being my everything. 💕
+    </p>
+
+    <div class="heart">❤️</div>
+
+    <div class="timeline">
+      <h2>Our Journey</h2>
+      <ul>
+        <li><strong>2017:</strong> The beginning of our story 💫</li>
+        <li><strong>2018:</strong> Get to know each other better 🥰</li>
+        <li><strong>2019:</strong> Laughter and late-night talks 🎉</li>
+        <li><strong>2020:</strong> We faced the world together 💪</li>
+        <li><strong>2021:</strong> More love, more memories 💖</li>
+        <li><strong>2022:</strong> Grew stronger, hand in hand 🌱</li>
+        <li><strong>2023:</strong> Another year, another blessing 🌈</li>
+        <li><strong>2024:</strong> Still crazy about you 💍</li>
+        <li><strong>2025:</strong> Looking ahead, dreaming together 🌟</li>
+      </ul>
+    </div>
+
+    <p>– Timy 💘</p>
+  </div>
+
+  <script>
+    // 💘 Generate falling hearts
+    const hearts = document.querySelector('.falling-hearts');
+    for (let i = 0; i < 30; i++) {
+      let heart = document.createElement('div');
+      heart.classList.add('heart-shape');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      hearts.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
