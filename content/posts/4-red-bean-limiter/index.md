@@ -4,7 +4,7 @@ date: 2025-06-19
 draft: true
 description: "Rate limiter based on Spring Boot Bean and Redis"
 summary: "Red Bean Limiter, making bean Red with Redis"
-slug: "red -bean"
+slug: "red-bean-limiter"
 tags: ["java", "redis", "system design"]
 ---
 
