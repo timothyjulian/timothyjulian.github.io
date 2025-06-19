@@ -9,7 +9,7 @@ tags: ["CLI", "personal"]
 toc: false
 ---
 
-## 🚀 Terminal Configuration: My Dev Playground
+# 🚀 Terminal Configuration: My Dev Playground
 
 Hey there, fellow dev! 👋 If you love a terminal that’s not just functional but also a joy to use, you’re in the right place. Here’s how I set up my own minimalist, productive, and good-looking terminal on a fresh `Arch Linux` (yep, running on WSL—because why not? 😏). Let’s get your shell feeling awesome!
 
