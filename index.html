@@ -27,7 +27,7 @@
     .game-board {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px; /* lebih lega */
+      gap: 20px;
       max-width: 90vw; 
       width: 100%;
     }
@@ -40,7 +40,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 7rem; /* lebih gede emoji */
+      font-size: 7rem;
       aspect-ratio: 1/1;
       transition: transform 0.3s;
       user-select: none;
@@ -59,15 +59,23 @@
       display: none;
       text-shadow: 2px 2px 8px #ff69b4;
     }
+
+    #celebrationGif {
+      display: none;
+      margin-top: 20px;
+      max-width: 90%;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
   </style>
 </head>
 <body>
   <h1>🎂 Happy Birthday Memory Game 🎉</h1>
   <div class="game-board" id="gameBoard"></div>
   <div id="message">🎉 Happy Birthday My Love Angel! ❤️ 🎉</div>
+  <img id="celebrationGif" src="https://media.tenor.com/_R8NbYgMmz8AAAAi/bubu-dudu-sseeyall.gif" alt="Celebration Gif">
 
   <script>
-    // 6 pairs (12 cards)
     const emojis = ["🎂","🎂","🎈","🎈","🎁","🎁","💖","💖","🌟","🌟","🎉","🎉"];
     let shuffled = emojis.sort(() => 0.5 - Math.random());
 
@@ -123,39 +131,15 @@
     }
 
     function checkWin() {
-      if (matchedCount === emojis.length) { // FIX: now check full match
-        showMessage();
-        launchConfetti();
+      if (matchedCount === emojis.length) {
+        showMessageAndGif();
       }
     }
 
-    function showMessage() {
+    function showMessageAndGif() {
       document.getElementById("message").style.display = "block";
+      document.getElementById("celebrationGif").style.display = "block";
     }
-
-    function launchConfetti() {
-      for (let i = 0; i < 80; i++) {
-        let confetti = document.createElement("div");
-        confetti.textContent = "🎉";
-        confetti.style.position = "fixed";
-        confetti.style.left = Math.random() * 100 + "vw";
-        confetti.style.top = "-50px";
-        confetti.style.fontSize = "30px"; // lebih besar biar festive
-        confetti.style.animation = `fall ${2 + Math.random() * 3}s linear`;
-        document.body.appendChild(confetti);
-
-        setTimeout(() => confetti.remove(), 4000);
-      }
-    }
-
-    // Falling confetti animation
-    const style = document.createElement('style');
-    style.innerHTML = `
-      @keyframes fall {
-        to { transform: translateY(100vh); }
-      }
-    `;
-    document.head.appendChild(style);
   </script>
 </body>
 </html>
