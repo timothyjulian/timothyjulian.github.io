@@ -1,54 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy 8th Anniversary</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Happy Birthday Memory Game 🎂</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 10px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #fff;
+      text-shadow: 2px 2px #ff69b4;
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .game-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px; /* lebih lega */
+      max-width: 90vw; 
+      width: 100%;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.25);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 7rem; /* lebih gede emoji */
+      aspect-ratio: 1/1;
+      transition: transform 0.3s;
+      user-select: none;
+    }
+
+    .card.flipped {
+      background: #ffb6c1;
+      transform: rotateY(180deg);
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 3rem;
+      color: white;
+      font-weight: bold;
+      display: none;
+      text-shadow: 2px 2px 8px #ff69b4;
+    }
+  </style>
 </head>
 <body>
-  <div class="falling-hearts"></div>
-
-  <div class="card">
-    <h1>💖 Happy 8th Anniversary 💖</h1>
-    <img src="photo.png" alt="Us together" class="photo" />
-
-    <p>To the love of my life,</p>
-    <p>
-      8 years of laughter, growth, memories, and unconditional love.  
-      I wouldn’t trade a single moment. Thank you for being my everything. 💕
-    </p>
-
-    <div class="heart">❤️</div>
-
-    <div class="timeline">
-      <h2>Our Journey</h2>
-      <ul>
-        <li><strong>2017:</strong> The beginning of our story 💫</li>
-        <li><strong>2018:</strong> Get to know each other better 🥰</li>
-        <li><strong>2019:</strong> Laughter and late-night talks 🎉</li>
-        <li><strong>2020:</strong> We faced the world together 💪</li>
-        <li><strong>2021:</strong> More love, more memories 💖</li>
-        <li><strong>2022:</strong> Grew stronger, hand in hand 🌱</li>
-        <li><strong>2023:</strong> Another year, another blessing 🌈</li>
-        <li><strong>2024:</strong> Still crazy about you 💍</li>
-        <li><strong>2025:</strong> Looking ahead, dreaming together 🌟</li>
-      </ul>
-    </div>
-
-    <p>– Timy 💘</p>
-  </div>
+  <h1>🎂 Happy Birthday Memory Game 🎉</h1>
+  <div class="game-board" id="gameBoard"></div>
+  <div id="message">🎉 Happy Birthday My Love Angel! ❤️ 🎉</div>
 
   <script>
-    // 💘 Generate falling hearts
-    const hearts = document.querySelector('.falling-hearts');
-    for (let i = 0; i < 30; i++) {
-      let heart = document.createElement('div');
-      heart.classList.add('heart-shape');
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDelay = Math.random() * 5 + 's';
-      hearts.appendChild(heart);
+    // 6 pairs (12 cards)
+    const emojis = ["🎂","🎂","🎈","🎈","🎁","🎁","💖","💖","🌟","🌟","🎉","🎉"];
+    let shuffled = emojis.sort(() => 0.5 - Math.random());
+
+    const gameBoard = document.getElementById("gameBoard");
+    let firstCard, secondCard;
+    let lock = false;
+    let matchedCount = 0;
+
+    shuffled.forEach(symbol => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.dataset.symbol = symbol;
+      card.innerHTML = "❓";
+      card.addEventListener("click", flipCard);
+      gameBoard.appendChild(card);
+    });
+
+    function flipCard() {
+      if (lock || this.classList.contains("flipped")) return;
+      this.classList.add("flipped");
+      this.innerHTML = this.dataset.symbol;
+
+      if (!firstCard) {
+        firstCard = this;
+      } else {
+        secondCard = this;
+        lock = true;
+        checkMatch();
+      }
     }
+
+    function checkMatch() {
+      if (firstCard.dataset.symbol === secondCard.dataset.symbol) {
+        firstCard.removeEventListener("click", flipCard);
+        secondCard.removeEventListener("click", flipCard);
+        matchedCount += 2;
+        resetBoard();
+        checkWin();
+      } else {
+        setTimeout(() => {
+          firstCard.classList.remove("flipped");
+          secondCard.classList.remove("flipped");
+          firstCard.innerHTML = "❓";
+          secondCard.innerHTML = "❓";
+          resetBoard();
+        }, 800);
+      }
+    }
+
+    function resetBoard() {
+      [firstCard, secondCard] = [null, null];
+      lock = false;
+    }
+
+    function checkWin() {
+      if (matchedCount === emojis.length) { // FIX: now check full match
+        showMessage();
+        launchConfetti();
+      }
+    }
+
+    function showMessage() {
+      document.getElementById("message").style.display = "block";
+    }
+
+    function launchConfetti() {
+      for (let i = 0; i < 80; i++) {
+        let confetti = document.createElement("div");
+        confetti.textContent = "🎉";
+        confetti.style.position = "fixed";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.top = "-50px";
+        confetti.style.fontSize = "30px"; // lebih besar biar festive
+        confetti.style.animation = `fall ${2 + Math.random() * 3}s linear`;
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+
+    // Falling confetti animation
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes fall {
+        to { transform: translateY(100vh); }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>
