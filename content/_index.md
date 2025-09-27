@@ -4,7 +4,7 @@ description: "Explore my experiments, research, and latest findings on this site
 ---
 
 {{< lead >}}
-Software Architecture, Competitive Programming, System Programming, and Machine Learning.
+Software Architecture, Competitive Programming, and Machine Learning.
 {{< /lead >}}
 
 ## Welcome to my blog! :waving_hand:
